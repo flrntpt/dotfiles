@@ -111,4 +111,4 @@ export EDITOR='vim'
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
 # Powerline
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
