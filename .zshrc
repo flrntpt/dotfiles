@@ -85,6 +85,9 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
+# source profile
+source ~/.zsh_profile
+
 # Anaconda
 export PATH="$HOME/anaconda3/bin:/usr/local/bin:$PATH"
 
@@ -107,5 +110,5 @@ export EDITOR='vim'
 # Config git repo
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
-# source profile
-source ~/.zsh_profile
+# Powerline
+. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
