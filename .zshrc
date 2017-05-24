@@ -85,8 +85,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-# Anaconda)
+# Anaconda
 export PATH="$HOME/anaconda3/bin:/usr/local/bin:$PATH"
+
+# Add path for powerline
+export PATH="/usr/local/share/python/:$PATH"
 
 # Change name prompt
 prompt_context() {
