@@ -57,11 +57,14 @@ set statusline+=%{VisualPercent()}
 set statusline=%<\ %n:%F\ %m%r%y%=%-35.(L:\ %l\ /\ %L,\ C:\ %c%V\ (%P)%)
 set hls
 
+" Mac OS X clipboard integration
+nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+vmap <F2> :w !pbcopy<CR><CR
 
 "  -----------------------
 "  Command line
 "  -----------------------
-set guifont=SourceCodePro\ for\ Powerline:h15
+set guifont=Hack:h14
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set t_Co=256
@@ -69,9 +72,11 @@ set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
 
-
-" Mac OS X clipboard integration
-nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-vmap <F2> :w !pbcopy<CR><CR
-
 set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+
+if has("gui_running")
+   let s:uname = system("uname")
+   if s:uname == "Darwin\n"
+      set guifont=Hack
+   endif
+endif
