@@ -85,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-# Custom config (flo)
+# Anaconda)
 export PATH="$HOME/anaconda3/bin:/usr/local/bin:$PATH"
 
 # Change name prompt
@@ -103,3 +103,6 @@ export EDITOR='vim'
 
 # Enable powerline
 . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+# Config git repo
+alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
