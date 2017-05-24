@@ -9,24 +9,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -42,11 +25,16 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
+" Config
+set timeoutlen=1000 ttimeoutlen=0" Fix bug with backspace " Remove timeout
+set backspace=indent,eol,start " Fix bug
+set clipboard=unnamed
 
 "  -----------------------
 "  Mouse
 "  -----------------------
 set mouse=a " Allow mouse scrolling
+se mouse+=a
 
 "  -----------------------
 "  Colors
@@ -67,3 +55,20 @@ colorscheme solarized
 set statusline+=%{VisualPercent()}
 set statusline=%<\ %n:%F\ %m%r%y%=%-35.(L:\ %l\ /\ %L,\ C:\ %c%V\ (%P)%)
 set hls
+
+
+"  -----------------------
+"  Command line
+"  -----------------------
+set guifont=Inconsolata\ for\ Powerline:h15
+let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
+set t_Co=256
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+set termencoding=utf-8
+
+
+" Mac OS X clipboard integration
+nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+vmap <F2> :w !pbcopy<CR><CR

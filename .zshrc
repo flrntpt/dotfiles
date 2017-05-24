@@ -101,8 +101,5 @@ export EDITOR='vim'
 # Use Z in zsh
 . `brew --prefix`/etc/profile.d/z.sh
 
-# Enable powerline
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-
 # Config git repo
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
