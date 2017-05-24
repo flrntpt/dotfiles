@@ -29,6 +29,7 @@ filetype plugin indent on    " required
 set timeoutlen=1000 ttimeoutlen=0" Fix bug with backspace " Remove timeout
 set backspace=indent,eol,start " Fix bug
 set clipboard=unnamed
+set laststatus=2 " Fix but with powerline not showing
 
 "  -----------------------
 "  Mouse
@@ -60,7 +61,7 @@ set hls
 "  -----------------------
 "  Command line
 "  -----------------------
-set guifont=Inconsolata\ for\ Powerline:h15
+set guifont=SourceCodePro\ for\ Powerline:h15
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
 set t_Co=256
@@ -72,3 +73,5 @@ set termencoding=utf-8
 " Mac OS X clipboard integration
 nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 vmap <F2> :w !pbcopy<CR><CR
+
+set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
