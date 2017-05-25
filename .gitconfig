@@ -1,0 +1,10 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+	name = flo
+	email = florent.pietot@gmail.com
+[core]
+	excludesfile = ~/.gitignore_global
+[filter "ipynb_stripout"]
+	clean = ipynb_stripout
+	smudge = cat
