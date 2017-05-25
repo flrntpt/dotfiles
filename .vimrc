@@ -29,7 +29,6 @@ filetype plugin indent on    " required
 set timeoutlen=1000 ttimeoutlen=0" Fix bug with backspace " Remove timeout
 set backspace=indent,eol,start " Fix bug
 set clipboard=unnamed
-set laststatus=2 " Fix but with powerline not showing
 
 "  -----------------------
 "  Mouse
@@ -62,8 +61,14 @@ nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 vmap <F2> :w !pbcopy<CR><CR
 
 "  -----------------------
-"  Command line
+"  Powerline
 "  -----------------------
+set laststatus=2 " Fix but with powerline not showing
+set noshowmode
+" set showtabline=2
+
+set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+
 set guifont=Hack:h14
 let g:Powerline_symbols = 'fancy'
 set encoding=utf-8
@@ -71,8 +76,6 @@ set t_Co=256
 set fillchars+=stl:\ ,stlnc:\
 set term=xterm-256color
 set termencoding=utf-8
-
-set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 
 if has("gui_running")
    let s:uname = system("uname")
