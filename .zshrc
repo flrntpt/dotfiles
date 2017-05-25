@@ -51,7 +51,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew docker osx extract z)
+plugins=(git brew docker osx extract z vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -111,4 +111,11 @@ export EDITOR='vim'
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
 # Powerline
-# . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+
+#function zle-keymap-select {
+ #   VIMODE="${${KEYMAP/vicmd/ M:command}/(main|viins)/}"
+  #  zle reset-prompt
+#}
+
+#zle -N zle-keymap-select
