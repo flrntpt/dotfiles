@@ -31,6 +31,15 @@ set timeoutlen=1000 ttimeoutlen=0" Fix bug with backspace " Remove timeout
 set backspace=indent,eol,start " Fix bug
 set clipboard=unnamed
 
+" Mac OS X clipboard integration
+nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+vmap <F2> :w !pbcopy<CR><CR
+
+" setting for vim-visual-page-percent
+set statusline+=%{VisualPercent()}
+set statusline=%<\ %n:%F\ %m%r%y%=%-35.(L:\ %l\ /\ %L,\ C:\ %c%V\ (%P)%)
+set hls
+
 "  -----------------------
 "  Mouse
 "  -----------------------
@@ -38,28 +47,24 @@ set mouse=a " Allow mouse scrolling
 se mouse+=a
 
 "  -----------------------
-"  Colors
+"  Line numberss
 "  -----------------------
-syntax on " Syntax highlighting 
-color desert " Colorscheme
 set number
 set relativenumber
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
+"  -----------------------
+"  Colors
+"  -----------------------
+" Safe way to enable syntax highlighting
+if !exists("g:syntax_on")
+    syntax enable
+endif
+
 " theme configs
-" " let g:solarized_termcolors=256
-" " set background=dark
+" let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
-
-" setting for vim-visual-page-percent
-set statusline+=%{VisualPercent()}
-set statusline=%<\ %n:%F\ %m%r%y%=%-35.(L:\ %l\ /\ %L,\ C:\ %c%V\ (%P)%)
-set hls
-
-" Mac OS X clipboard integration
-nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-vmap <F2> :w !pbcopy<CR><CR
 
 "  -----------------------
 "  Powerline
