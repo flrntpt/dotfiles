@@ -43,9 +43,12 @@ set statusline+=%{VisualPercent()}
 set statusline=%<\ %n:%F\ %m%r%y%=%-35.(L:\ %l\ /\ %L,\ C:\ %c%V\ (%P)%)
 set hls
 
-" easier moving of code blocks
-vnoremap < <gv " better indentation
-vnoremap > >gv " better indentation
+" Don't cancel visual select when shifting
+vnoremap < <gv
+vnoremap > >gv
+
+" Show whitespaces
+" MUST be inserted BEFORE the colorscheme command
 
 "  -----------------------
 "  Mouse
