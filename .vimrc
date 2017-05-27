@@ -142,3 +142,10 @@ au BufNewFile,BufRead *.js, *.html, *.css
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
+
+"  -----------------------
+"  Whitespaces
+"  -----------------------
+
+" Flag unneccessary whitespaces
+au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
