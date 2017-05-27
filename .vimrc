@@ -14,6 +14,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'tmhedberg/simpylfold'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
+Plugin 'scrooloose/nerdcommenter'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -33,6 +34,8 @@ filetype plugin indent on    " required
 set timeoutlen=1000 ttimeoutlen=0" Fix bug with backspace " Remove timeout
 set backspace=indent,eol,start " Fix bug
 set clipboard=unnamed
+
+autocmd Filetype python nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
 
 " Mac OS X clipboard integration
 nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
@@ -115,3 +118,4 @@ nnoremap <Leader>f :NERDTreeToggle<Enter>
 set foldmethod=indent
 set foldlevel=99
 let g:SimpylFold_docstring_preview=1
+
