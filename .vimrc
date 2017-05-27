@@ -18,6 +18,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'vim-scripts/indentpython.vim'
 Bundle 'Valloric/YouCompleteMe'
+" Plugin 'nvie/vim-flake8'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -38,7 +39,8 @@ set timeoutlen=1000 ttimeoutlen=0" Fix bug with backspace " Remove timeout
 set backspace=indent,eol,start " Fix bug
 set clipboard=unnamed
 
-autocmd Filetype python nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
+"autocmd Filetype python nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
+autocmd Filetype python nnoremap <buffer> <F5> :exec 'w !python'<cr>
 
 " Mac OS X clipboard integration
 nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
@@ -103,6 +105,7 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 if !exists("g:syntax_on")
     syntax enable
 endif
+let python_highlight_all=1
 
 " theme configs
 " let g:solarized_termcolors=256
@@ -157,23 +160,28 @@ let g:SimpylFold_docstring_preview=1
 
 " PEP 8 indentation for python
 au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
-    \ set fileformat=unix
+	\ set tabstop=4 |
+	\ set softtabstop=4 |
+	\ set shiftwidth=4 |
+	\ set textwidth=79 |
+	\ set expandtab |
+	\ set autoindent |
+	\ set fileformat=unix
 
 " indentation for js, html & css
 au BufNewFile,BufRead *.js, *.html, *.css
-    \ set tabstop=2
-    \ set softtabstop=2
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
     \ set shiftwidth=2
 
 "  -----------------------
 "  Whitespaces
 "  -----------------------
 
+" define BadWhiteSpace first
+highlight BadWhitespace ctermbg=red guibg=darkred
+
 " Flag unneccessary whitespaces
-au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+"au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
+au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
