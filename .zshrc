@@ -107,7 +107,7 @@ export EDITOR='vim'
 # Use Z in zsh
 . `brew --prefix`/etc/profile.d/z.sh
 
-# Config git repo
+# Create 'config' alias for git repo used for dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
 # Powerline
