@@ -107,3 +107,4 @@ nnoremap <Leader>f :NERDTreeToggle<Enter>
 " Enable folding
 set foldmethod=indent
 set foldlevel=99
+let g:SimpylFold_docstring_preview=1
