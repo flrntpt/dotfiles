@@ -117,7 +117,27 @@ nnoremap <Leader>f :NERDTreeToggle<Enter>
 "  -----------------------
 set foldmethod=indent
 set foldlevel=99
-let g:SimpylFold_docstring_preview=1
 " Enable folding with the spacebar
 nnoremap <space> za
+" SimplyFold docstring preview for folded code
+let g:SimpylFold_docstring_preview=1
 
+"  -----------------------
+"  Indentation
+"  -----------------------
+
+" PEP 8 indentation for python
+au BufNewFile,BufRead *.py
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set textwidth=79
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
+" indentation for js, html & css
+au BufNewFile,BufRead *.js, *.html, *.css
+    \ set tabstop=2
+    \ set softtabstop=2
+    \ set shiftwidth=2
