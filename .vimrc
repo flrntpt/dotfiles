@@ -9,6 +9,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'tpope/vim-fugitive'
 Plugin 'tmhedberg/simpylfold'
@@ -112,10 +113,11 @@ endif
 nnoremap <Leader>f :NERDTreeToggle<Enter>
 
 "  -----------------------
-"  SimplyFold
+"  Folding / SimplyFold
 "  -----------------------
-" Enable folding
 set foldmethod=indent
 set foldlevel=99
 let g:SimpylFold_docstring_preview=1
+" Enable folding with the spacebar
+nnoremap <space> za
 
