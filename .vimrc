@@ -34,7 +34,10 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" Config
+
+"  -----------------------
+" Vim defaults overriding
+"  -----------------------
 set timeoutlen=1000 ttimeoutlen=0" Fix bug with backspace " Remove timeout
 set backspace=indent,eol,start " Fix bug
 set clipboard=unnamed
@@ -50,6 +53,11 @@ vmap <F2> :w !pbcopy<CR><CR
 set statusline+=%{VisualPercent()}
 set statusline=%<\ %n:%F\ %m%r%y%=%-35.(L:\ %l\ /\ %L,\ C:\ %c%V\ (%P)%)
 set hls
+
+" no temp or backup files
+set noswapfile
+set nobackup
+set nowritebackup
 
 "  -----------------------
 " Vim defaults overriding
