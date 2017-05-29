@@ -7,7 +7,7 @@ export ZSH=/Users/flo/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -111,7 +111,7 @@ export EDITOR='vim'
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
 # Powerline
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
 #function zle-keymap-select {
  #   VIMODE="${${KEYMAP/vicmd/ M:command}/(main|viins)/}"
