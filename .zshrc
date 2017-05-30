@@ -108,6 +108,7 @@ prompt_context() {
 # TODO: move this somewhere else
 function conda_auto_env() {
 	if [ -e "environment.yml" ]; then
+		echo "Activating environment..."
 		ENV=$(head -n 1 environment.yml | cut -f2 -d ' ')
 		. activate $ENV
 	else
