@@ -64,7 +64,10 @@ set nowritebackup
 "  -----------------------
 " Vim defaults overriding
 "  -----------------------
- 
+
+" Remap <Leader> key
+let mapleader = ","
+
 " Don't cancel visual select when shifting
 vnoremap < <gv
 vnoremap > >gv
