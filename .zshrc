@@ -121,6 +121,8 @@ function chpwd() {
 	conda_auto_env
 }
 
+conda_auto_env
+
 # Set default editor
 export EDITOR='vim'
 
