@@ -104,6 +104,22 @@ prompt_context() {
 	fi
 }
 
+# Auto-activate conda environments
+# TODO: move this somewhere else
+function conda_auto_env() {
+	if [ -e "environment.yml" ]; then
+		ENV=$(head -n 1 environment.yml | cut -f2 -d ' ')
+		. activate $ENV
+	else
+		. deactivate 
+	fi
+}
+
+# ZSH hook function chpwd, called when changing directory
+function chpwd() {
+	conda_auto_env
+}
+
 # Set default editor
 export EDITOR='vim'
 
@@ -122,3 +138,5 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 #}
 
 #zle -N zle-keymap-select
+
+
