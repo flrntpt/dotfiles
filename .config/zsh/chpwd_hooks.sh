@@ -14,7 +14,5 @@ function conda_auto_env() {
 				. activate $ENV
 			fi
 		fi
-	else
-		. deactivate
 	fi
 }
