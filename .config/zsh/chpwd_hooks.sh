@@ -11,6 +11,7 @@ function conda_auto_env() {
 				echo "Conda env ${ENV} doesn't exist"
 				echo "Creating ${ENV}"
 				conda env create -f environment.yml
+				. activate $ENV
 			fi
 		fi
 	else
