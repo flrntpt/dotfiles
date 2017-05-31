@@ -178,6 +178,9 @@ let g:SimpylFold_docstring_preview=1
 "  -----------------------
 "  Indentation
 "  -----------------------
+set tabstop=2
+set shiftwidth=2
+set expandtab
 
 " PEP 8 indentation for python
 au BufNewFile,BufRead *.py
