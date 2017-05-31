@@ -104,9 +104,11 @@ prompt_context() {
 	fi
 }
 
+. ~/.config/zsh/chpwd_hooks.sh
+conda_auto_env
+
 # ZSH hook function chpwd, called when changing directory
 function chpwd() {
-	. ~/.config/zsh/chpwd_hooks.sh
 	conda_auto_env
 }
 
