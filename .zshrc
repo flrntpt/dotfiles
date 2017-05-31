@@ -104,33 +104,11 @@ prompt_context() {
 	fi
 }
 
-# Auto-activate conda environments
-# TODO: move this somewhere else
-function conda_auto_env() {
-	if [ -e "environment.yml" ]; then
-		ENV=$(head -n 1 environment.yml | cut -f2 -d ' ')
-		# Check we're not already in the environment
-		if [[ $PATH != *$ENV* ]]; then
-			echo "Activating ${ENV} environment..."
-			. activate $ENV
-			if [ $? -ne 0 ]; then
-				# create environment and activate
-				echo "Conda env ${ENV} doesn't exist"
-				echo "Creating ${ENV}"
-				conda env create -f environment.yml
-			fi
-		fi
-	else
-		. deactivate
-	fi
-}
-
 # ZSH hook function chpwd, called when changing directory
 function chpwd() {
+	. ~/.config/zsh/chpwd_hooks.sh
 	conda_auto_env
 }
-
-conda_auto_env
 
 # Set default editor
 export EDITOR='vim'
