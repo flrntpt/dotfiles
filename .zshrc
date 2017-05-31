@@ -99,9 +99,9 @@ export PATH="/usr/local/share/python/:$PATH"
 
 # Change name prompt
 prompt_context() {
-	if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-		prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-	fi
+  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+  fi
 }
 
 . ~/.config/zsh/chpwd_hooks.sh
@@ -109,7 +109,7 @@ conda_auto_env
 
 # ZSH hook function chpwd, called when changing directory
 function chpwd() {
-	conda_auto_env
+  conda_auto_env
 }
 
 # Set default editor
