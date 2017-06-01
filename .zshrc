@@ -92,7 +92,7 @@ alias tmuxconfig="vim ~/.tmux.conf"
 source ~/.zsh_profile
 
 # Anaconda
-export PATH="$HOME/anaconda3/bin:/usr/local/bin:$PATH"
+export PATH="$HOME/code/anaconda3/bin:/usr/local/bin:$PATH"
 
 # Add path for powerline
 export PATH="/usr/local/share/python/:$PATH"
