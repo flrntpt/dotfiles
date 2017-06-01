@@ -1,5 +1,5 @@
 # Auto-activate conda environments
-function conda_auto_env() {
+function conda_auto_activate() {
   if [ -e "environment.yml" ]; then
     ENV=$(head -n 1 environment.yml | cut -f2 -d ' ')
     # Check we're not already in the environment
@@ -16,3 +16,5 @@ function conda_auto_env() {
     fi
   fi
 }
+
+export PROMPT_COMMAND=conda_auto_activate

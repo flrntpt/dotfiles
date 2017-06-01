@@ -104,12 +104,15 @@ prompt_context() {
   fi
 }
 
+# Source chpwd hooks
 . ~/.config/zsh/chpwd_hooks.sh
-conda_auto_env
+
+# auto-activate conda when launching new tmux pane in a directory with a conda env
+conda_auto_activate 
 
 # ZSH hook function chpwd, called when changing directory
 function chpwd() {
-  conda_auto_env
+  conda_auto_activate # auto-activate conda env
 }
 
 # Set default editor
