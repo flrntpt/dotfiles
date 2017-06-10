@@ -61,6 +61,8 @@ set noswapfile
 set nobackup
 set nowritebackup
 
+autocmd FileType python autocmd BufWritePre <buffer> %s/\s\+$//e
+
 "  -----------------------
 " Vim defaults overriding
 "  -----------------------
