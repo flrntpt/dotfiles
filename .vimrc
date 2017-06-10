@@ -52,6 +52,10 @@ autocmd Filetype python nnoremap <buffer> <F5> :exec 'w !python'<cr>
 nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
 vmap <F2> :w !pbcopy<CR><CR
 
+" Shortcut for reindenting whole document
+" http://vim.wikia.com/wiki/Fix_indentation
+map <F7> mzgg=G`z
+
 " setting for vim-visual-page-percent
 set statusline+=%{VisualPercent()}
 set statusline=%<\ %n:%F\ %m%r%y%=%-35.(L:\ %l\ /\ %L,\ C:\ %c%V\ (%P)%)
