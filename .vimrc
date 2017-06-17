@@ -89,6 +89,10 @@ vnoremap k gk
 vnoremap gj 5j
 vnoremap gk 5k
 
+" When jump to top or bottom also center screen
+nnoremap H Hzz
+nnoremap L Lzz
+
 " When jump to next match also center screen
 nnoremap n nzz
 nnoremap N Nzz
