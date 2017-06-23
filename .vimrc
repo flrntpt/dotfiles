@@ -82,12 +82,12 @@ vnoremap > >gv
 " Visual linewise up and down by default (and use gj gk to go quicker)
 nnoremap j gj
 nnoremap k gk
-nnoremap gj 5j
-nnoremap gk 5k
+nnoremap gj 5jzz
+nnoremap gk 5kzz
 vnoremap j gj
 vnoremap k gk
-vnoremap gj 5j
-vnoremap gk 5k
+vnoremap gj 5jzz
+vnoremap gk 5kzz
 
 " When jump to top or bottom also center screen
 nnoremap H Hzz
