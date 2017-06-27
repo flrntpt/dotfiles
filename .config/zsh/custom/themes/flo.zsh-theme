@@ -1,6 +1,6 @@
 if [[ -n "$SSH_CONNECTION" ]]; then
-local user=`whoami`
-user="%{$fg_bold[white]%}$user@%M %{$reset_color%}"
+  local user=`whoami`
+  user="%{$fg_bold[white]%}$user@%M %{$reset_color%}"
 fi
 
 local ret_status="%(?:%{$fg_bold[green]%}➜ :%{$fg_bold[red]%}➜ )"
