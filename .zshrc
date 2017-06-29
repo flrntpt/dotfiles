@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-. ~/.config/zsh/aliases.zsh
+# . ~/.config/zsh/custom/aliases.zsh
 
 # source profile
 source ~/.zsh_profile
@@ -101,9 +101,6 @@ export CXX="/usr/local/Cellar/gcc/7.1.0/bin/g++-7"
 #     prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
 #   fi
 # }
-
-# Source chpwd hooks
-. ~/.config/zsh/chpwd_hooks.sh
 
 # auto-activate conda when launching new tmux pane in a directory with a conda env
 conda_auto_activate 
