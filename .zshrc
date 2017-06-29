@@ -95,12 +95,12 @@ export PATH="/usr/local/share/python:$PATH"
 # Add path for gcc compiler
 export CXX="/usr/local/Cellar/gcc/7.1.0/bin/g++-7"
 
-# Change name prompt
-prompt_context() {
-  if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
-  fi
-}
+# Change name prompt (works with agnoster theme)
+# prompt_context() {
+#   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
+#     prompt_segment black default "%(!.%{%F{yellow}%}.)$USER"
+#   fi
+# }
 
 # Source chpwd hooks
 . ~/.config/zsh/chpwd_hooks.sh
@@ -121,6 +121,9 @@ export EDITOR='vim'
 
 # Create 'config' alias for git repo used for dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+
+# tmuxinator completion
+. ~/.config/tmuxinator/tmuxinator.zsh
 
 # Powerline
 # . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
