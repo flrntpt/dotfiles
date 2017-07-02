@@ -51,7 +51,7 @@ ZSH_CUSTOM=~/.config/zsh/custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew docker osx extract z vi-mode)
+plugins=(git brew docker osx extract z vi-mode, python)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -89,8 +89,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.zsh_profile
 
 # Add path for anaconda
-# export PATH="$HOME/code/anaconda3/bin:/usr/local/bin:$PATH"
-export PATH="/usr/local/bin:$PATH"
+export PATH="$HOME/code/anaconda3/bin:/usr/local/bin:$PATH"
 # Add path for powerline
 export PATH="/usr/local/share/python:$PATH"
 # Add path for gcc compiler
