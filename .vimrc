@@ -21,6 +21,7 @@ Plugin 'vim-scripts/indentpython.vim'
 Plugin 'maralla/completor.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
+Plugin 'cjrh/vim-conda'
 " Plugin 'nvie/vim-flake8'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -44,6 +45,9 @@ filetype plugin indent on    " required
 set timeoutlen=1000 ttimeoutlen=0" Fix bug with backspace " Remove timeout
 set backspace=indent,eol,start " Fix bug
 set clipboard=unnamed
+
+" This way YouCompleteMe will use python environment
+let g:ycm_python_binary_path = 'python'
 
 "autocmd Filetype python nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
 autocmd Filetype python nnoremap <buffer> <F5> :exec 'w !python'<cr>
