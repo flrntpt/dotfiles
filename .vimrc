@@ -18,7 +18,8 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'joom/vim-commentary'
 Plugin 'vim-scripts/indentpython.vim'
-Plugin 'maralla/completor.vim'
+" Plugin 'maralla/completor.vim'
+Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'cjrh/vim-conda'
@@ -45,9 +46,6 @@ filetype plugin indent on    " required
 set timeoutlen=1000 ttimeoutlen=0" Fix bug with backspace " Remove timeout
 set backspace=indent,eol,start " Fix bug
 set clipboard=unnamed
-
-" This way YouCompleteMe will use python environment
-let g:ycm_python_binary_path = 'python'
 
 "autocmd Filetype python nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
 autocmd Filetype python nnoremap <buffer> <F5> :exec 'w !python'<cr>
@@ -226,7 +224,20 @@ highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /^\t\+/
 au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
 
+"  -----------------------
+"  Plugins
+"  -----------------------
+
+" YouCompleteMe
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" Vim-conda
+let g:jedi#force_py_version = 3
+let g:UltisnipsUsePythonVersion = 3
+let g:conda_startup_msg_suppress = 1
+
 " Completor
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
