@@ -10,7 +10,10 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Bundle 'edkolev/tmuxline.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tmhedberg/simpylfold'
 Plugin 'scrooloose/nerdtree'
@@ -18,7 +21,6 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'kien/ctrlp.vim'
 Plugin 'joom/vim-commentary'
 Plugin 'vim-scripts/indentpython.vim'
-" Plugin 'maralla/completor.vim'
 Plugin 'valloric/youcompleteme'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
@@ -39,10 +41,13 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-
 "  -----------------------
 " Vim defaults overriding
 "  -----------------------
+
+" Remap <Leader> key
+let mapleader = ","
+
 set timeoutlen=1000 ttimeoutlen=0" Fix bug with backspace " Remove timeout
 set backspace=indent,eol,start " Fix bug
 set clipboard=unnamed
@@ -58,9 +63,11 @@ vmap <F2> :w !pbcopy<CR><CR
 " http://vim.wikia.com/wiki/Fix_indentation
 map <F7> mzgg=G`z
 
-" setting for vim-visual-page-percent
-set statusline+=%{VisualPercent()}
-set statusline=%<\ %n:%F\ %m%r%y%=%-35.(L:\ %l\ /\ %L,\ C:\ %c%V\ (%P)%)
+" setting for vim-visual-page-percent with powerline
+" set statusline+=%{VisualPercent()}
+" set statusline=%<\ %n:%F\ %m%r%y%=%-35.(L:\ %l\ /\ %L,\ C:\ %c%V\ (%P)%)
+
+" Search highlighting
 set hls
 
 " no temp or backup files
@@ -68,14 +75,12 @@ set noswapfile
 set nobackup
 set nowritebackup
 
+" TODO: find out what this is?
 autocmd FileType python autocmd BufWritePre <buffer> %s/\s\+$//e
 
 "  -----------------------
-" Vim defaults overriding
+"  Key mappings
 "  -----------------------
-
-" Remap <Leader> key
-let mapleader = ","
 
 " Don't cancel visual select when shifting
 vnoremap < <gv
@@ -146,7 +151,7 @@ set laststatus=2 " Fix but with powerline not showing
 set noshowmode
 " set showtabline=2
 
-set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
+" set rtp+=/usr/local/lib/python2.7/site-packages/powerline/bindings/vim
 
 set guifont=Hack:h14
 let g:Powerline_symbols = 'fancy'
@@ -163,31 +168,6 @@ if has("gui_running")
    endif
 endif
 
-"  -----------------------
-"  NERDTree
-"  -----------------------
-" This will launch NERDTreea automatically when vim launches
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
-nnoremap <Leader>f :NERDTreeToggle<Enter>
-nnoremap <silent> <Leader>v :NERDTreeFind<CR>
-
-let NERDTreeQuitOnOpen = 1
-let NERDTreeAutoDeleteBuffer = 1
-let NERDTreeMinimalUI = 1
-let NERDTreeDirArrows = 1
-" automatically close tab if the only remaining window is NERDTree
-" autocmd bufenter * if (winnr(“$”) == 1 && exists(“b:NERDTreeType”) && b:NERDTreeType == “primary”) | q | endif
-
-"  -----------------------
-"  Folding / SimplyFold
-"  -----------------------
-set foldmethod=indent
-set foldlevel=99
-" Enable folding with the spacebar
-nnoremap <space> za
-" SimplyFold docstring preview for folded code
-let g:SimpylFold_docstring_preview=1
 
 "  -----------------------
 "  Indentation
@@ -228,16 +208,45 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
 "  Plugins
 "  -----------------------
 
+" vim-airline
+" ----------------------
+map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>:Tmuxline<CR>
+" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tmuxline#enabled = 1
+let g:tmuxline_theme = 'airline'
+
 " YouCompleteMe
+" ----------------------
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " Vim-conda
+" ----------------------
 let g:jedi#force_py_version = 3
 let g:UltisnipsUsePythonVersion = 3
 let g:conda_startup_msg_suppress = 1
 
-" Completor
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
+" NERDTree
+" ----------------------
+" This will launch NERDTreea automatically when vim launches
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists(“s:std_in”) | NERDTree | endif
+nnoremap <Leader>f :NERDTreeToggle<Enter>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+
+let NERDTreeQuitOnOpen = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+" automatically close tab if the only remaining window is NERDTree
+" autocmd bufenter * if (winnr(“$”) == 1 && exists(“b:NERDTreeType”) && b:NERDTreeType == “primary”) | q | endif
+
+" Folding / SimplyFold
+" -----------------------
+set foldmethod=indent
+set foldlevel=99
+
+" Enable folding with the spacebar
+nnoremap <space> za
+" SimplyFold docstring preview for folded code
+let g:SimpylFold_docstring_preview = 1

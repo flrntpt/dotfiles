@@ -83,7 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-. ~/.config/zsh/custom/plugins/aliases.zsh
+source ~/.config/zsh/custom/plugins/aliases.zsh
 
 # source profile
 source ~/.zsh_profile
@@ -95,12 +95,13 @@ source ~/.zsh_profile
 #   fi
 # }
 
-# Source custom chpwd hooks
-. ~/.config/zsh/custom/plugins/chpwd_hooks.sh
+# Source custom utils scripts
+source ~/.config/utils/utils.sh
 
+# Source custom chpwd hooks
+source ~/.config/zsh/custom/plugins/chpwd_hooks.sh
 # auto-activate conda when launching new tmux pane in a directory with a conda env
 conda_auto_activate 
-
 # ZSH hook function chpwd, called when changing directory
 function chpwd() {
   conda_auto_activate # auto-activate conda env
@@ -110,7 +111,7 @@ function chpwd() {
 export EDITOR='vim'
 
 # Use Z in zsh
-. `brew --prefix`/etc/profile.d/z.sh
+source `brew --prefix`/etc/profile.d/z.sh
 
 # Create 'config' alias for git repo used for dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
@@ -127,5 +128,3 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 #}
 
 #zle -N zle-keymap-select
-
-
