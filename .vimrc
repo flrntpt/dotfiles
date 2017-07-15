@@ -141,8 +141,18 @@ let python_highlight_all=1
 
 " theme configs
 " let g:solarized_termcolors=256
-set background=dark
+
+" Switch background based on $ITERM_PROFILE
+let iterm_profile=$ITERM_PROFILE
+if iterm_profile =~ "light"
+  set background=light
+else
+  set background=dark
+endif
 colorscheme solarized
+
+" Key mapping for toggle between dark/light colorscheme for vim and tmuxline
+map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>:Tmuxline<CR>
 
 "  -----------------------
 "  Powerline
@@ -210,7 +220,6 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
 
 " vim-airline
 " ----------------------
-map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>:Tmuxline<CR>
 " let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
 let g:tmuxline_theme = 'airline'
