@@ -96,7 +96,7 @@ source ~/.zsh_profile
 # }
 
 # Source custom utils scripts
-source ~/.config/utils/utils.sh
+source ~/.config/zsh/custom/plugins/utils.sh
 
 # Source custom chpwd hooks
 source ~/.config/zsh/custom/plugins/chpwd_hooks.sh
