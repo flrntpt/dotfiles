@@ -53,7 +53,7 @@ set backspace=indent,eol,start " Fix bug
 set clipboard=unnamed
 
 "autocmd Filetype python nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
-autocmd Filetype python nnoremap <buffer> <F5> :exec 'w !python'<cr>
+autocmd Filetype python nnoremap <buffer> <F5> :exec 'w !python %'<cr>
 
 " Mac OS X clipboard integration
 nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
