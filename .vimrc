@@ -254,6 +254,9 @@ let NERDTreeDirArrows = 1
 " automatically close tab if the only remaining window is NERDTree
 " autocmd bufenter * if (winnr(“$”) == 1 && exists(“b:NERDTreeType”) && b:NERDTreeType == “primary”) | q | endif
 
+" NERDTree ignore
+let NERDTreeIgnore = ['\.pyc$', '__pycache__$']
+
 " Folding / SimplyFold
 " -----------------------
 set foldmethod=indent
