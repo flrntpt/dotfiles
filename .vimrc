@@ -78,6 +78,11 @@ set nowritebackup
 " TODO: find out what this is?
 autocmd FileType python autocmd BufWritePre <buffer> %s/\s\+$//e
 
+" Allow left/right movements at the end of line
+" See :help 'whichwrap'
+" http://vim.wikia.com/wiki/Automatically_wrap_left_and_right
+set whichwrap+=<,>,h,l,[,]
+
 "  -----------------------
 "  Key mappings
 "  -----------------------
@@ -220,7 +225,6 @@ au BufRead,BufNewFile *.py,*.pyw match BadWhitespace /\s\+$/
 
 " vim-airline
 " ----------------------
-" let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tmuxline#enabled = 1
 let g:tmuxline_theme = 'airline'
 
