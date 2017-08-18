@@ -52,8 +52,11 @@ set timeoutlen=1000 ttimeoutlen=0" Fix bug with backspace " Remove timeout
 set backspace=indent,eol,start " Fix bug
 set clipboard=unnamed
 
-"autocmd Filetype python nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
-autocmd Filetype python nnoremap <buffer> <F5> :exec 'w !python %'<cr>
+" autocmd Filetype python nnoremap <buffer> <F5> :exec '!python' shellescape(@%, 1)<cr>
+autocmd Filetype python nnoremap <buffer> <F5> :exec 'w !python'<cr>
+" Uncommenting next file will make path behave like if python script launched
+" from terminal: end path is script current directory
+" autocmd Filetype python nnoremap <buffer> <F5> :exec 'w !python %'<cr>
 
 " Mac OS X clipboard integration
 nmap <F1> :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
