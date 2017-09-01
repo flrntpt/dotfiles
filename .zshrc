@@ -98,6 +98,8 @@ source ~/.zsh_profile
 # Source custom utils scripts
 source ~/.config/zsh/custom/plugins/utils.sh
 
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
 # Source custom chpwd hooks
 source ~/.config/zsh/custom/plugins/chpwd_hooks.sh
 # auto-activate conda when launching new tmux pane in a directory with a conda env
