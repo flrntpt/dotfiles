@@ -1,0 +1,15 @@
+# This is Git's per-user configuration file.
+[include]
+  # Include private git config
+  # e.g. user.name, user.email, etc..
+  path = ~/.gitconfig.private
+[core]
+	excludesfile = ~/.gitignore_global
+[filter "ipynb_stripout"]
+	clean = ipynb_stripout
+	smudge = cat
+[merge "ours"]
+	driver = true
+[alias]
+  # https://coderwall.com/p/euwpig/a-better-git-log
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
