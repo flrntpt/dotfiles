@@ -125,6 +125,18 @@ vnoremap <C-d> <C-d>zz
 vnoremap <C-f> <C-f>zz
 vnoremap <C-b> <C-b>zz
 
+" Panels navigation
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+"  -----------------------
+"  Panes
+"  -----------------------
+set splitbelow
+set splitright
+
 "  -----------------------
 "  Mouse
 "  -----------------------
