@@ -1,3 +1,4 @@
 # .gitattributes for my config repo
 
 .tmux.conf.local merge=ours
+.zshrc.local merge=ours
