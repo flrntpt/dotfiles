@@ -5,6 +5,6 @@
 
 wake-ubuntu(){
   echo "Waking up Ubuntu"
-  ssh flo-pi 'wake-ubuntu'
-  ssh flo-ubuntu
+  ssh pi 'wake-ubuntu'
+  ssh ubuntu
 }
