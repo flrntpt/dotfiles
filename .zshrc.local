@@ -1,10 +1,2 @@
 # Local config file for .zshrc
 # This file will vary based on host branch
-#
-# MacOS Version
-
-wake-ubuntu(){
-  echo "Waking up Ubuntu"
-  ssh pi 'wake-ubuntu'
-  ssh ubuntu
-}
