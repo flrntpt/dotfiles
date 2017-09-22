@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/Users/flo/.oh-my-zsh'
-let g:netrw_dirhist_2='/Users/flo/code/experiments/Memoize'
-let g:netrw_dirhist_3='/Users/flo/code/MOOCS/stanford-cs231n/.git'
