@@ -85,6 +85,10 @@ autocmd FileType python autocmd BufWritePre <buffer> %s/\s\+$//e
 " http://vim.wikia.com/wiki/Automatically_wrap_left_and_right
 set whichwrap+=<,>,h,l,[,]
 
+" Vertical line at 80 characters
+set colorcolumn=80
+highlight ColorColumn ctermbg=gray
+
 "  -----------------------
 "  Key mappings
 "  -----------------------
