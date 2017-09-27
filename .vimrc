@@ -10,7 +10,6 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-" Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Bundle 'edkolev/tmuxline.vim'
@@ -247,11 +246,13 @@ let g:tmuxline_theme = 'airline'
 " ----------------------
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_path_to_python_interpreter = '/usr/bin/python'
+let g:ycm_python_binary_path = 'python'
 
 " Vim-conda
 " ----------------------
-let g:jedi#force_py_version = 3
-let g:UltisnipsUsePythonVersion = 3
+let g:jedi#force_py_version = 2
+let g:UltisnipsUsePythonVersion = 2
 let g:conda_startup_msg_suppress = 1
 
 " NERDTree
