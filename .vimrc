@@ -90,6 +90,38 @@ set colorcolumn=80
 highlight ColorColumn ctermbg=gray
 
 "  -----------------------
+"  Colors
+"  -----------------------
+
+" Safe way to enable syntax highlighting
+if !exists("g:syntax_on")
+    syntax enable
+endif
+let python_highlight_all=1
+
+" theme configs
+" let g:solarized_termcolors=256
+
+" Switch background based on $ITERM_PROFILE
+let iterm_profile=$ITERM_PROFILE
+
+if iterm_profile =~ "light"
+  set background=light
+else
+  set background=dark
+endif
+
+" Define colorscheme
+if iterm_profile =~ "spacemacs"
+  colorscheme space-vim-dark
+else
+  colorscheme solarized
+endif
+
+" Key mapping for toggle between dark/light colorscheme for vim and tmuxline
+map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>:Tmuxline<CR>
+
+"  -----------------------
 "  Key mappings
 "  -----------------------
 
@@ -154,41 +186,6 @@ set relativenumber
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 "  -----------------------
-"  Colors
-"  -----------------------
-" Safe way to enable syntax highlighting
-if !exists("g:syntax_on")
-    syntax enable
-endif
-let python_highlight_all=1
-
-" theme configs
-" let g:solarized_termcolors=256
-
-" Switch background based on $ITERM_PROFILE
-let iterm_profile=$ITERM_PROFILE
-
-" Spacemacs theme 
-if iterm_profile =~ "spacemacs"
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-  colorscheme space-vim-dark
-else
-  colorscheme solarized
-endif
-
-if iterm_profile =~ "light"
-  set background=light
-else
-  set background=dark
-endif
-" colorscheme solarized
-
-" Key mapping for toggle between dark/light colorscheme for vim and tmuxline
-map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>:Tmuxline<CR>
-
-"  -----------------------
 "  Powerline
 "  -----------------------
 set laststatus=2 " Fix but with powerline not showing
@@ -211,7 +208,6 @@ if has("gui_running")
       set guifont=Hack
    endif
 endif
-
 
 "  -----------------------
 "  Indentation
