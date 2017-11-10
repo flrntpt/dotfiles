@@ -167,12 +167,23 @@ let python_highlight_all=1
 
 " Switch background based on $ITERM_PROFILE
 let iterm_profile=$ITERM_PROFILE
+
+" Spacemacs theme 
+if iterm_profile =~ "spacemacs"
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+  colorscheme space-vim-dark
+else
+  colorscheme solarized
+endif
+
 if iterm_profile =~ "light"
   set background=light
 else
   set background=dark
 endif
-colorscheme solarized
+" colorscheme solarized
 
 " Key mapping for toggle between dark/light colorscheme for vim and tmuxline
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>:Tmuxline<CR>
