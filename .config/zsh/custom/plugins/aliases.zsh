@@ -2,3 +2,5 @@
 alias zshconfig="vim ~/.zshrc"
 alias vimconfig="vim ~/.vimrc"
 alias tmuxconfig="vim ~/.tmux.conf"
+alias tmux="tmux -2"
+
