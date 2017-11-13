@@ -25,6 +25,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'cjrh/vim-conda'
 Plugin 'nvie/vim-flake8'
+Plugin 'sirver/ultisnips'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
