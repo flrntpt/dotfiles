@@ -115,6 +115,9 @@ export EDITOR='vim'
 # Use Z in zsh
 source `brew --prefix`/etc/profile.d/z.sh
 
+# Use autoenv
+source $(brew --prefix autoenv)/activate.sh
+
 # Create 'config' alias for git repo used for dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
