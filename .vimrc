@@ -26,6 +26,7 @@ Plugin 'tpope/vim-repeat'
 Plugin 'cjrh/vim-conda'
 Plugin 'nvie/vim-flake8'
 Plugin 'sirver/ultisnips'
+Plugin 'junegunn/goyo.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -301,3 +302,19 @@ set foldlevel=99
 nnoremap <space> za
 " SimplyFold docstring preview for folded code
 let g:SimpylFold_docstring_preview = 1
+
+
+" Goyo
+" -----------------------
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
