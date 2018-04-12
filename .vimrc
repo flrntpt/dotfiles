@@ -237,7 +237,7 @@ au BufNewFile,BufRead *.md
   \ set tabstop=2 |
   \ set softtabstop=2 |
   \ set shiftwidth=2 |
-  \ set colorcolumn=160
+  \ set colorcolumn=0
 
 
 "  -----------------------
