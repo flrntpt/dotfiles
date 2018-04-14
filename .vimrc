@@ -27,6 +27,7 @@ Plugin 'cjrh/vim-conda'
 Plugin 'nvie/vim-flake8'
 Plugin 'sirver/ultisnips'
 Plugin 'junegunn/goyo.vim'
+" Plugin 'liuchengxu/space-vim-dark'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
