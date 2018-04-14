@@ -1,8 +1,5 @@
 # README #
 
-Influenced by this post on HackerNews:
-[https://news.ycombinator.com/item?id=11070797](Link URL)
-
 ## Local files management
 Depending of the system, specific files might be needed. The way we handle this is by creating a .local version of the file
 that get sourced by the non-local file.
