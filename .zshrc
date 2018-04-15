@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/flo/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -101,12 +101,9 @@ source ~/.config/zsh/custom/plugins/utils.sh
 
 # Source custom chpwd hooks
 source ~/.config/zsh/custom/plugins/chpwd_hooks.sh
-# auto-activate conda when launching new tmux pane in a directory with a conda env
-conda_auto_activate 
-# ZSH hook function chpwd, called when changing directory
-function chpwd() {
-  conda_auto_activate # auto-activate conda env
-}
+# Required for when launching tmux in a directory with an .env
+# TODO: Find a way for this not being required
+_conda_auto_activate 
 
 # Set default editor
 export EDITOR='vim'
