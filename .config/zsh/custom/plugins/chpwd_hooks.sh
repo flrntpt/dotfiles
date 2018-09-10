@@ -5,13 +5,13 @@ function _conda_auto_activate() {
     # Check we're not already in the environment
     if [[ $PATH != *$ENV* ]]; then
       # echo "Activating ${ENV} environment..."
-      . activate $ENV
+      conda activate $ENV
       if [ $? -ne 0 ]; then
         # create environment and activate
         # echo "Conda env ${ENV} doesn't exist"
         # echo "Creating ${ENV}"
         conda env create -f environment.yml
-        . activate $ENV
+        conda activate $ENV
       fi
     fi
   fi
