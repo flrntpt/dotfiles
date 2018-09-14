@@ -227,13 +227,15 @@ au BufNewFile,BufRead *.py
   \ set textwidth=79 |
   \ set expandtab |
   \ set autoindent |
-  \ set fileformat=unix
+  \ set fileformat=unix |
+  \ set colorcolumn=80
 
 " indentation for js, html & css
 au BufNewFile,BufRead *.js,*.html,*.css
-    \ set tabstop=2 |
-    \ set softtabstop=2 |
-    \ set shiftwidth=2
+  \ set tabstop=2 |
+  \ set softtabstop=2 |
+  \ set shiftwidth=2 |
+  \ set colorcolumn=80
 
 au BufNewFile,BufRead *.md
   \ set tabstop=2 |
