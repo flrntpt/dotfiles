@@ -124,6 +124,9 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 # tmuxinator completion
 . ~/.config/tmuxinator/tmuxinator.zsh
 
+setopt extended_glob # allows us to use ^ to negate globs
+unsetopt nomatch # but when pattern matching fails, simply use the command as is. See robbyrussell/oh-my-zsh#449
+
 # Powerline
 # . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
