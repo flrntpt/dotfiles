@@ -140,3 +140,5 @@ unsetopt nomatch # but when pattern matching fails, simply use the command as is
 #}
 
 #zle -N zle-keymap-select
+
+export PATH="$HOME/bin:$HOME/bin/anaconda3/bin:$PATH"
