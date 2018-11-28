@@ -118,6 +118,10 @@ if [[ "$OSTYPE" =~ "darwin" ]]; then
   source $(brew --prefix autoenv)/activate.sh
 fi
 
+if [[ "$OSTYPE" =~ "darwin" ]]; then
+  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+fi
+
 # Create 'config' alias for git repo used for dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
