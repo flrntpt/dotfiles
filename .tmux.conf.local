@@ -1,6 +1,2 @@
 # Local config file for .tmux.conf
 # This file will vary based on host branch
-
-# MacOS clipboard integration
-set-option -g default-command "reattach-to-user-namespace -l zsh"
-bind y run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
