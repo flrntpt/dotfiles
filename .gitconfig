@@ -7,6 +7,14 @@
 	excludesfile = ~/.gitignore_global
 [diff]
     tool = vimdiff
+[filter "nbstrip_full"]
+  clean = "jq --indent 1 \
+          '(.cells[] | select(has(\"outputs\")) | .outputs) = []  \
+          | (.cells[] | select(has(\"execution_count\")) | .execution_count) = 0 \
+          | .metadata = {\"language_info\": {\"name\": \"python\", \"pygments_lexer\": \"ipython3\"}} \
+          | .cells[].metadata = {} \
+          '"
+  smudge = cat
 [filter "ipynb_stripout"]
 	clean = ipynb_stripout
 	smudge = cat
@@ -15,6 +23,7 @@
 [alias]
   # https://coderwall.com/p/euwpig/a-better-git-log
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	last = log -1 HEAD
 [push]
 	default = simple
 [difftool]
