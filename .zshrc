@@ -108,20 +108,6 @@ _conda_auto_activate
 # Set default editor
 export EDITOR='vim'
 
-if [[ "$OSTYPE" =~ "darwin" ]]; then
-  # Use Z in zsh
-  source `brew --prefix`/etc/profile.d/z.sh
-
-  # Use autoenv
-  source $(brew --prefix autoenv)/activate.sh
-
-  # CoreUtils
-  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
-
-  # OpenVPN
-  export PATH="$(brew --prefix openvpn)/sbin:$PATH"
-fi
-
 # Create 'config' alias for git repo used for dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
