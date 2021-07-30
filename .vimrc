@@ -240,6 +240,7 @@ au BufNewFile,BufRead *.js,*.html,*.css
   \ set shiftwidth=2 |
   \ set colorcolumn=80
 
+" Markdown
 au BufNewFile,BufRead *.md
   \ set tabstop=2 |
   \ set softtabstop=2 |
