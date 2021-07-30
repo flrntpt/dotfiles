@@ -9,10 +9,9 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Bundle 'edkolev/tmuxline.vim'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tmhedberg/simpylfold'
 Plugin 'scrooloose/nerdtree'
@@ -27,7 +26,8 @@ Plugin 'cjrh/vim-conda'
 Plugin 'nvie/vim-flake8'
 Plugin 'sirver/ultisnips'
 Plugin 'junegunn/goyo.vim'
-" Plugin 'liuchengxu/space-vim-dark'
+Plugin 'liuchengxu/space-vim-dark'
+Plugin 'sonph/onehalf', {'rtp': 'vim/'}
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -117,6 +117,9 @@ endif
 " Define colorscheme
 if iterm_profile =~ "spacemacs"
   colorscheme space-vim-dark
+elseif iterm_profile =~ "onehalfdark"
+  colorscheme onehalfdark
+  let g:airline_theme='onehalfdark'
 else
   colorscheme solarized
 endif
@@ -237,12 +240,23 @@ au BufNewFile,BufRead *.js,*.html,*.css
   \ set shiftwidth=2 |
   \ set colorcolumn=80
 
+" Markdown
 au BufNewFile,BufRead *.md
   \ set tabstop=2 |
   \ set softtabstop=2 |
   \ set shiftwidth=2 |
   \ set colorcolumn=0
 
+" Haskell
+au BufNewFile,BufRead *.hs
+  \ set tabstop=4 |
+  \ set softtabstop=4 |
+  \ set shiftwidth=4 |
+  \ set textwidth=79 |
+  \ set expandtab |
+  \ set autoindent |
+  \ set fileformat=unix |
+  \ set colorcolumn=80
 
 "  -----------------------
 "  Whitespaces
@@ -323,3 +337,10 @@ autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 let g:goyo_width = 110
+
+" DVC
+autocmd! BufNewFile,BufRead Dvcfile,*.dvc setfiletype yaml
+
+" vim-scala
+let g:scala_scaladoc_indent = 1
+
