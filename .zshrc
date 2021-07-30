@@ -51,7 +51,7 @@ ZSH_CUSTOM=~/.config/zsh/custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast brew docker osx extract z vi-mode python zsh-syntax-highlighting)
+plugins=(vi-mode zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,37 +108,35 @@ _conda_auto_activate
 # Set default editor
 export EDITOR='vim'
 
-# Use Z in zsh
 if [[ "$OSTYPE" =~ "darwin" ]]; then
+  # Use Z in zsh
   source `brew --prefix`/etc/profile.d/z.sh
-fi
 
-# Use autoenv
-if [[ "$OSTYPE" =~ "darwin" ]]; then
+  # Use autoenv
   source $(brew --prefix autoenv)/activate.sh
-fi
 
-if [[ "$OSTYPE" =~ "darwin" ]]; then
+  # CoreUtils
   export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+
+  # OpenVPN
+  export PATH="$(brew --prefix openvpn)/sbin:$PATH"
 fi
 
 # Create 'config' alias for git repo used for dotfiles
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
 # tmuxinator completion
-. ~/.config/tmuxinator/tmuxinator.zsh
+source ~/.config/tmuxinator/tmuxinator.zsh
 
 setopt extended_glob # allows us to use ^ to negate globs
 unsetopt nomatch # but when pattern matching fails, simply use the command as is. See robbyrussell/oh-my-zsh#449
 
-# Powerline
-# . /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+# function zle-keymap-select {
+#     VIMODE="${${KEYMAP/vicmd/ M:command}/(main|viins)/}"
+#     zle reset-prompt
+# }
 
-#function zle-keymap-select {
- #   VIMODE="${${KEYMAP/vicmd/ M:command}/(main|viins)/}"
-  #  zle reset-prompt
-#}
+# zle -N zle-keymap-select
 
-#zle -N zle-keymap-select
+export PATH=$PATH:~/.local/bin
 
-export PATH="$HOME/bin:$HOME/bin/anaconda3/bin:$PATH"
