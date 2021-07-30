@@ -138,5 +138,17 @@ unsetopt nomatch # but when pattern matching fails, simply use the command as is
 
 # zle -N zle-keymap-select
 
+# Because Apple has deprecated use of OpenSSL in favor of its own TLS and crypto libraries.
+# see `brew info openssl` as of 03/21/2018
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+# Java
+# export PATH="$HOME/.jenv/bin:$PATH"
+# eval "$(jenv init -)"
+
+# Enable backward tab
+# https://stackoverflow.com/a/842370/4520435
+bindkey '^[[Z' reverse-menu-complete
+
 export PATH=$PATH:~/.local/bin
 
