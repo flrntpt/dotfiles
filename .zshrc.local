@@ -3,6 +3,20 @@
 #
 # MacOS Version
 
+if [[ "$OSTYPE" =~ "darwin" ]]; then
+  # Use Z in zsh
+  source `brew --prefix`/etc/profile.d/z.sh
+
+  # Use autoenv
+  source $(brew --prefix autoenv)/activate.sh
+
+  # CoreUtils
+  export PATH="$(brew --prefix coreutils)/libexec/gnubin:/usr/local/bin:$PATH"
+
+  # OpenVPN
+  export PATH="$(brew --prefix openvpn)/sbin:$PATH"
+fi
+
 wake-ubuntu(){
   echo "Waking up Ubuntu"
   ssh pi 'wake-ubuntu'
