@@ -340,3 +340,7 @@ let g:goyo_width = 110
 
 " DVC
 autocmd! BufNewFile,BufRead Dvcfile,*.dvc setfiletype yaml
+
+" vim-scala
+let g:scala_scaladoc_indent = 1
+
