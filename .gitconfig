@@ -30,3 +30,5 @@
 	prompt = false
 [merge]
 	ff = false
+[user]
+	email = 1823257+florentpietot@users.noreply.github.com
