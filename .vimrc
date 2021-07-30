@@ -26,7 +26,8 @@ Plugin 'cjrh/vim-conda'
 Plugin 'nvie/vim-flake8'
 Plugin 'sirver/ultisnips'
 Plugin 'junegunn/goyo.vim'
-" Plugin 'liuchengxu/space-vim-dark'
+Plugin 'liuchengxu/space-vim-dark'
+Plugin 'sonph/onehalf', {'rtp': 'vim/'}
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -116,6 +117,9 @@ endif
 " Define colorscheme
 if iterm_profile =~ "spacemacs"
   colorscheme space-vim-dark
+elseif iterm_profile =~ "onehalfdark"
+  colorscheme onehalfdark
+  let g:airline_theme='onehalfdark'
 else
   colorscheme solarized
 endif
