@@ -8,3 +8,5 @@ wake-ubuntu(){
   ssh pi 'wake-ubuntu'
   ssh ubuntu
 }
+
+alias nibvpn="sudo /usr/local/sbin/openvpn --config ~/.nibble.ovpn"
