@@ -247,6 +247,16 @@ au BufNewFile,BufRead *.md
   \ set shiftwidth=2 |
   \ set colorcolumn=0
 
+" Haskell
+au BufNewFile,BufRead *.hs
+  \ set tabstop=4 |
+  \ set softtabstop=4 |
+  \ set shiftwidth=4 |
+  \ set textwidth=79 |
+  \ set expandtab |
+  \ set autoindent |
+  \ set fileformat=unix |
+  \ set colorcolumn=80
 
 "  -----------------------
 "  Whitespaces
