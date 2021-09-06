@@ -8,14 +8,12 @@ SCRIPT_PATH=`realpath $0`
 SCRIPT_DIR=`dirname $SCRIPT_PATH`
 DOTFILES_DIR=`dirname $SCRIPT_DIR`
 
-source $SCRIPT_DIR/common.sh
+source "$SCRIPT_DIR/base.sh"
+source "$COMMON_DIR/install.sh"
 
 DEBUG=true
-
-DST_DIR=$HOME/${DEBUG_DIRECTORY}
-
+DST_DIR=$HOME/${DEBUG_DIRECTORY} # Will be updated if debug is false
 SYMLINK_FLAG_SUFFIX=".symlink"
-
 BACKUP_PREFIX="dotfiles_backup"
 
 
@@ -65,7 +63,7 @@ get_destination_path_for_dotfiles () {
 }
 
 
-while getopts hvgd:f: flag
+while getopts hgd:f:p flag
 do
   case "${flag}" in
     h )
@@ -85,6 +83,9 @@ do
       SRC="${SCRIPT_DIR}/${rel_path}"
       recurse_install $SRC
       exit 0
+      ;;
+    p )
+      FORCE_PROMPT=true
       ;;
   esac
 done

@@ -4,17 +4,16 @@
 
 set -e
 
-SCRIPT_PATH=`realpath $0`
-SCRIPT_DIR=`dirname $SCRIPT_PATH`
-DOTFILES_DIR=`dirname $SCRIPT_DIR`
 
-source $SCRIPT_DIR/common.sh
+SCRIPT_PATH=$(realpath $0)
+SCRIPT_DIR=$(dirname $SCRIPT_PATH)
+
+source $SCRIPT_DIR/base.sh
+source $COMMON_DIR/install.sh
 
 DEBUG=true
-DST_DIR="$HOME/$DEBUG_DIRECTORY"
+DST_DIR="$HOME/$DEBUG_DIRECTORY"  # Will be updated if debug is false
 CONFIG_DIRNAME=".config"
-CONFIG_DIRECTORY="${DST_DIR}/${CONFIG_DIRNAME}"
-
 BACKUP_PREFIX="config_backup"
 
 
@@ -47,13 +46,24 @@ get_destination_path_for_config () {
 
   if [[ $src =~ $topic_regex ]]; then
     local topic=${BASH_REMATCH[1]}
-    local dst="${CONFIG_DIRECTORY}/${topic}/${BASH_REMATCH[2]}"
+    local rel_path=${BASH_REMATCH[2]}
+    local dst="$(get_config_directory)/${topic}/${rel_path}"
   fi
   echo $dst
 }
 
 
-while getopts hgd:f: flag
+get_config_directory () {
+  echo "${DST_DIR}/${CONFIG_DIRNAME}"
+}
+
+
+get_backup_path_for_config () {
+  echo "${DST}/${BACKUP_DIRNAME}/${BACKUP_PREFIX}_${NOW}"
+}
+
+
+while getopts hgd:f:p flag
 do
   case "${flag}" in
     h )
@@ -66,7 +76,7 @@ do
       ;;
     d )
       custom_dir=${OPTARG}
-      DST_DIR="${DST_DIR}/${custom_dir}"
+      DST_DIR="$HOME/${custom_dir}"
       ;;
     f )
       rel_path=${OPTARG}
@@ -74,9 +84,13 @@ do
       install_config $SRC
       exit 0
       ;;
+    p )
+      FORCE_PROMPT=true
+      ;;
   esac
 done
 
 install_config_files
 # TODO: maybe check return value of previous function?
 success "Config files successfully installed in '$DST_DIR'!"
+

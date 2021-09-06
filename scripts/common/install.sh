@@ -1,18 +1,12 @@
 #!/bin/sh
 #
-# Commons
+# Install commons
 
 set -e
 
-SCRIPT_PATH=`realpath $0`
-SCRIPT_DIR=`dirname $SCRIPT_PATH`
-DOTFILES_DIR=`dirname $SCRIPT_DIR`
-FORMATTING_SCRIPT_PATH="$SCRIPT_DIR/formatting.sh"
-
-source $FORMATTING_SCRIPT_PATH
+source "$COMMON_DIR/formatting.sh"
 
 DEBUG_DIRECTORY="DEBUG_INSTALL"
-
 DATE_FORMAT="%Y_%m_%dT%H_%M_%S"
 NOW=$(date +${DATE_FORMAT})
 BACKUP_DIRNAME="backups"
@@ -47,7 +41,10 @@ install_one () {
        [[ $backup_all != "true" ]] && \
        [[ $overwrite_all != "true" ]]; then
 
-      if [[ $(readlink $dst) == "$src" ]] && [[ $DEBUG != "true" ]]; then
+      # If FORCE_PROMPT is set to true
+      # It will prompt even if symlink is the same
+      if [[ $(readlink $dst) == "$src" ]] && \
+         [[ $FORCE_PROMPT != "true" ]]; then
         info "Symlink exist already for ${dst}: will be skipped."
         skip=true
       else
@@ -61,7 +58,10 @@ install_one () {
   skip=${skip:-$skip_all}
 
   if [[ "$skip" != "true" ]]; then
-    [[ "$backup" == "true" ]] && backup_file $dst
+    if [[ "$backup" == "true" ]]; then
+      local backup=${dst/$DST_DIR/$(get_backup_dir)}
+      backup_file $dst $backup
+    fi
     [[ "$overwrite" == "true" ]] && remove_file $dst
 
     mkdir -p $(dirname $dst)
@@ -112,8 +112,9 @@ symlink () {
 
 backup_file () {
   local file=$1
+  local backup=$2
 
-  local backup=${file/$DST_DIR/$(get_backup_dir)}
+  # local backup=${file/$DST_DIR/$(get_backup_dir)}
   mkdir -p $(dirname $backup)
 
   run_op "mv $file $backup"
