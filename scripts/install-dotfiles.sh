@@ -17,8 +17,6 @@ DST_DIR=$HOME/${DEBUG_DIRECTORY}
 
 SYMLINK_FLAG_SUFFIX=".symlink"
 
-DATE_FORMAT="%Y_%m_%dT%H_%M_%S"
-NOW=$(date +${DATE_FORMAT})
 BACKUP_PREFIX="dotfiles_backup"
 
 
@@ -40,7 +38,6 @@ install_dotfiles () {
   for src in $(find -H "$DOTFILES_DIR" \
       -name "*${SYMLINK_FLAG_SUFFIX}" \
       -not -path '*.git*'
-      -not -pa
   )
   do
     recurse_install $src
@@ -57,12 +54,12 @@ recurse_install () {
       recurse_install $element
     done
   else
-    install_one $src
+    install_one_dotfile $src
   fi
 }
 
 
-get_destination_path () {
+get_destination_path_for_dotfiles () {
   local path=$1
   local valid_file_character="[a-zA-Z0-9\_\-\.]"
 
@@ -78,108 +75,12 @@ get_destination_path () {
   while [[ $path =~ $symlink_regex ]] ; do
     path=${BASH_REMATCH[1]}.${BASH_REMATCH[2]}${BASH_REMATCH[3]}
   done
+  # NOTE: if you want to debug, echo in the caller
   echo $path
 }
 
-
-
-install_one () {
-  local src=$1
-  local dst=$(get_destination_path $src)
-  info "Installing $src to $dst"
-
-  local skip= backup= overwrite=
-
-  if [ -f "$dst" -o -d "$dst" -o -L "$dst" ]; then
-
-    if [[ $skip_all != "true" ]] && \
-       [[ $backup_all != "true" ]] && \
-       [[ $overwrite_all != "true" ]]; then
-
-      if [[ $(readlink $dst) == "$src" ]] && [[ $DEBUG != "true" ]]; then
-        info "Symlink exist already for ${dst}: will be skipped."
-        skip=true
-      else
-        prompt_user_for_action $src $dst
-      fi
-    fi
-  fi
-
-  backup=${backup:-$backup_all}
-  overwrite=${overwrite:-$overwrite_all}
-  skip=${skip:-$skip_all}
-
-  if [[ "$skip" != "true" ]]; then
-    [[ "$backup" == "true" ]] && backup_file $dst
-    [[ "$overwrite" == "true" ]] && remove_file $dst
-
-    mkdir -p $(dirname $dst)
-    symlink $src $dst
-  else
-    success "Skipping $src"
-  fi
-}
-
-
-prompt_user_for_action () {
-  local src=$1
-  local dst=$2
-
-  user "File already exists: $dst ($(basename "$src"))\r
-       What do you want to do?\n\
-      [s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
-  read -n 1 -s user_action
-  echo "\r"
-
-  case "$user_action" in
-    s )
-      skip=true;;
-    S )
-      skip_all=true;;
-    b )
-      backup=true;;
-    B )
-      backup_all=true;;
-    o )
-      overwrite=true;;
-    O )
-      overwrite_all=true;;
-    * )
-      error "Unrecognized value, terminating..";;
-  esac
-}
-
-
-get_backup_dir () {
-  echo "${DST_DIR}/${BACKUP_PREFIX}_${NOW}"
-}
-
-
-backup_file () {
-  local file=$1
-
-  local backup=${file/$DST_DIR/$(get_backup_dir)}
-  mkdir -p $(dirname $backup)
-
-  run_op "mv $file $backup"
-  success "Moved $file to $backup"
-}
-
-
-remove_file () {
-  local file=$1
-
-  rm -rf $file
-  success "Deleted $dst"
-}
-
-
-symlink() {
-  local src=$1
-  local dst=$2
-
-  action "Symlinking $src to $dst"
-  run_op "ln -s $src $dst"
+install_one_dotfile () {
+  install_one $1 get_destination_path_for_dotfiles
 }
 
 
