@@ -9,11 +9,28 @@ SCRIPT_DIR=`dirname $SCRIPT_PATH`
 DOTFILES_DIR=`dirname $SCRIPT_DIR`
 FORMATTING_SCRIPT_PATH="$SCRIPT_DIR/formatting.sh"
 
+source $FORMATTING_SCRIPT_PATH
+
 DEBUG_DIRECTORY="DEBUG_INSTALL"
 
 DATE_FORMAT="%Y_%m_%dT%H_%M_%S"
 NOW=$(date +${DATE_FORMAT})
 BACKUP_DIRNAME="backups"
+
+
+recurse_install () {
+  local src=$1
+  local get_destination_path=$2  # This is a function
+
+  if [[ -d $src ]]; then
+    for element in $src/*
+    do
+      recurse_install $element $get_destination_path
+    done
+  else
+    install_one $src $get_destination_path
+  fi
+}
 
 
 install_one () {

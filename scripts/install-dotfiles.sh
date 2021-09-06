@@ -9,7 +9,6 @@ SCRIPT_DIR=`dirname $SCRIPT_PATH`
 DOTFILES_DIR=`dirname $SCRIPT_DIR`
 
 source $SCRIPT_DIR/common.sh
-source $SCRIPT_DIR/formatting.sh
 
 DEBUG=true
 
@@ -40,22 +39,8 @@ install_dotfiles () {
       -not -path '*.git*'
   )
   do
-    recurse_install $src
+    recurse_install $src get_destination_path_for_dotfiles
   done
-}
-
-
-recurse_install () {
-  local src=$1
-
-  if [[ -d $src ]]; then
-    for element in $src/*
-    do
-      recurse_install $element
-    done
-  else
-    install_one_dotfile $src
-  fi
 }
 
 
@@ -77,10 +62,6 @@ get_destination_path_for_dotfiles () {
   done
   # NOTE: if you want to debug, echo in the caller
   echo $path
-}
-
-install_one_dotfile () {
-  install_one $1 get_destination_path_for_dotfiles
 }
 
 

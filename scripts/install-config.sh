@@ -9,7 +9,6 @@ SCRIPT_DIR=`dirname $SCRIPT_PATH`
 DOTFILES_DIR=`dirname $SCRIPT_DIR`
 
 source $SCRIPT_DIR/common.sh
-source $FORMATTING_SCRIPT_PATH
 
 DEBUG=true
 DST_DIR="$HOME/$DEBUG_DIRECTORY"
@@ -35,23 +34,10 @@ install_config_files () {
     -not -path "*.git*"
   )
   do
-    recurse_install $src
+    recurse_install $src get_destination_path_for_config
   done
 }
 
-
-recurse_install () {
-  local src=$1
-
-  if [[ -d $src ]]; then
-    for element in $src/*
-    do
-      recurse_install $element
-    done
-  else
-    install_one_config_file $src
-  fi
-}
 
 get_destination_path_for_config () {
   local src=$1
@@ -64,11 +50,6 @@ get_destination_path_for_config () {
     local dst="${CONFIG_DIRECTORY}/${topic}/${BASH_REMATCH[2]}"
   fi
   echo $dst
-}
-
-
-install_one_config_file () {
-  install_one $1 get_destination_path_for_config
 }
 
 
