@@ -16,11 +16,6 @@ DST_DIR="$HOME/$DEBUG_DIRECTORY"  # Will be updated if debug is false
 CONFIG_DIRNAME=".config"
 BACKUP_PREFIX="config_backup"
 
-# read -s user_action
-# echo "\r"
-# echo $user_action
-
-
 show_help () {
   echo "Installer for config (run in debug by default):"
   echo " -d pick the directory, relative to \$HOME"
