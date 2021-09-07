@@ -1,12 +1,12 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Perform dotfiles installation
 
 set -e
 
-SCRIPT_PATH=`realpath $0`
-SCRIPT_DIR=`dirname $SCRIPT_PATH`
-DOTFILES_DIR=`dirname $SCRIPT_DIR`
+SCRIPT_PATH=$(realpath "$0")
+SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
+DOTFILES_DIR=$(dirname "$SCRIPT_DIR")
 
 source "$SCRIPT_DIR/base.sh"
 source "$COMMON_DIR/install.sh"
@@ -17,7 +17,7 @@ SYMLINK_FLAG_SUFFIX=".symlink"
 BACKUP_PREFIX="dotfiles_backup"
 
 
-function show_help {
+show_help () {
   echo "Installer for dotfiles (run in debug by default):"
   echo " -d pick the directory, relative to \$HOME"
   echo " -f install a specific file relative to \$SCRIPT_DIR"
@@ -28,17 +28,17 @@ function show_help {
 
 install_dotfiles () {
   info "Dotfiles will be linked to: $DST_DIR"
-  mkdir -p $DST_DIR
+  mkdir -p "$DST_DIR"
 
-  local skip_all=false backup_all=false overwrite_all=false
+  # local skip_all=false backup_all=false overwrite_all=false
 
-  for src in $(find -H "$DOTFILES_DIR" \
-      -name "*${SYMLINK_FLAG_SUFFIX}" \
-      -not -path '*.git*'
-  )
+  while IFS= read -r -d '' src
   do
-    recurse_install $src get_destination_path_for_dotfiles
-  done
+    recurse_install "$src" get_destination_path_for_dotfiles
+  done < <(
+    find -H "$DOTFILES_DIR" -name "*${SYMLINK_FLAG_SUFFIX}" \
+    -not -path "*.git*" -print0
+  )
 }
 
 
@@ -59,7 +59,7 @@ get_destination_path_for_dotfiles () {
     path=${BASH_REMATCH[1]}.${BASH_REMATCH[2]}${BASH_REMATCH[3]}
   done
   # NOTE: if you want to debug, echo in the caller
-  echo $path
+  echo "$path"
 }
 
 
@@ -86,6 +86,8 @@ do
       ;;
     p )
       FORCE_PROMPT=true
+      ;;
+    * )
       ;;
   esac
 done

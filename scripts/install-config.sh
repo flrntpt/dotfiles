@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Install configuration
 
@@ -8,33 +8,36 @@ set -e
 SCRIPT_PATH=$(realpath $0)
 SCRIPT_DIR=$(dirname $SCRIPT_PATH)
 
-source $SCRIPT_DIR/base.sh
-source $COMMON_DIR/install.sh
+source "$SCRIPT_DIR/base.sh"
+source "$COMMON_DIR/install.sh"
 
 DEBUG=true
 DST_DIR="$HOME/$DEBUG_DIRECTORY"  # Will be updated if debug is false
 CONFIG_DIRNAME=".config"
 BACKUP_PREFIX="config_backup"
 
+# read -s user_action
+# echo "\r"
+# echo $user_action
 
-function show_help {
+
+show_help () {
   echo "Installer for config (run in debug by default):"
   echo " -d pick the directory, relative to \$HOME"
   echo " -f install a specific file relative to \$SCRIPT_DIR"
   echo " -g disable debug mode"
   echo " -h show help"
+  echo " -p force prompt"
 }
 
 
 install_config_files () {
-  for src in $(
-    find -H "$DOTFILES_DIR" \
-    -path "*/config" \
-    -not -path "*.git*"
-  )
+  while IFS= read -r -d '' src
   do
-    recurse_install $src get_destination_path_for_config
-  done
+    recurse_install "$src" get_destination_path_for_config
+  done < <(
+    find -H "$DOTFILES_DIR" -path "*/config" -not -path "*.git*" -print0
+  )
 }
 
 
@@ -47,9 +50,10 @@ get_destination_path_for_config () {
   if [[ $src =~ $topic_regex ]]; then
     local topic=${BASH_REMATCH[1]}
     local rel_path=${BASH_REMATCH[2]}
-    local dst="$(get_config_directory)/${topic}/${rel_path}"
+    local dst
+    dst="$(get_config_directory)/${topic}/${rel_path}"
   fi
-  echo $dst
+  echo "$dst"
 }
 
 
@@ -80,12 +84,15 @@ do
       ;;
     f )
       rel_path=${OPTARG}
-      SRC="${DOTFILES_DIR}/${rel_path}"
-      install_config $SRC
+      src="${DOTFILES_DIR}/${rel_path}"
+      recurse_install $src get_destination_path_for_config
       exit 0
       ;;
     p )
       FORCE_PROMPT=true
+      ;;
+    * )
+      exit 1
       ;;
   esac
 done
@@ -93,4 +100,3 @@ done
 install_config_files
 # TODO: maybe check return value of previous function?
 success "Config files successfully installed in '$DST_DIR'!"
-
