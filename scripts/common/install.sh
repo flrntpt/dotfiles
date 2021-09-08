@@ -1,18 +1,17 @@
 #!/bin/bash
-#
+
 # Install commons
 
 set -e
 
-. "$COMMON_DIR/formatting.sh"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)"
 
-DEBUG_DIRECTORY="DEBUG_INSTALL"
-DST_DIR="$HOME/$DEBUG_DIRECTORY"  # Will be updated if debug is false
+source "${SCRIPT_DIR}/formatting.sh"
+source "${SCRIPT_DIR}/constants.sh"
+unset SCRIPT_DIR
+
 DATE_FORMAT="%Y_%m_%dT%H_%M_%S"
 NOW=$(date +${DATE_FORMAT})
-BACKUP_DIRNAME="backups"
-
-FORCE_PROMPT=false
 
 # Have to declare to avoid "unbound variable" errors
 # But it's dangerous to declare globally without a lock
@@ -148,3 +147,4 @@ run_op () {
 get_backup_dir () {
   echo "${DST_DIR}/${BACKUP_DIRNAME}/${BACKUP_PREFIX}_${NOW}"
 }
+

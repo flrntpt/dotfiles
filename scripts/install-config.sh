@@ -4,15 +4,9 @@
 
 set -e
 
+source "${0%/*}/common/config.sh"
+source "${0%/*}/common/install.sh"
 
-SCRIPT_PATH=$(realpath $0)
-SCRIPT_DIR=$(dirname $SCRIPT_PATH)
-
-source "$SCRIPT_DIR/base.sh"
-source "$COMMON_DIR/install.sh"
-
-DEBUG=true
-DST_DIR="$HOME/$DEBUG_DIRECTORY"  # Will be updated if debug is false
 CONFIG_DIRNAME=".config"
 BACKUP_PREFIX="config_backup"
 
@@ -80,7 +74,10 @@ do
     f )
       rel_path=${OPTARG}
       src="${DOTFILES_DIR}/${rel_path}"
+      unset rel_path
+
       recurse_install $src get_destination_path_for_config
+      unset src
       exit 0
       ;;
     p )

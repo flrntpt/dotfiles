@@ -4,15 +4,10 @@
 
 set -e
 
-SCRIPT_PATH=$(realpath "$0")
-SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
-DOTFILES_DIR=$(dirname "$SCRIPT_DIR")
+source "${0%/*}/common/constants.sh"
+source "${0%/*}/common/config.sh"
+source "${0%/*}/common/install.sh"
 
-source "$SCRIPT_DIR/base.sh"
-source "$COMMON_DIR/install.sh"
-
-DEBUG=true
-DST_DIR=$HOME/${DEBUG_DIRECTORY} # Will be updated if debug is false
 SYMLINK_FLAG_SUFFIX=".symlink"
 BACKUP_PREFIX="dotfiles_backup"
 
@@ -29,8 +24,6 @@ show_help () {
 install_dotfiles () {
   info "Dotfiles will be linked to: $DST_DIR"
   mkdir -p "$DST_DIR"
-
-  # local skip_all=false backup_all=false overwrite_all=false
 
   while IFS= read -r -d '' src
   do
@@ -70,18 +63,21 @@ do
       show_help
       exit 0
       ;;
-    d )
-      custom_dir=${OPTARG}
-      DST_DIR="${DST_DIR}/${custom_dir}"
-      ;;
     g )
       DEBUG=false
       DST_DIR=$HOME
       ;;
+    d )
+      custom_dir=${OPTARG}
+      DST_DIR="${DST_DIR}/${custom_dir}"
+      ;;
     f )
       rel_path=${OPTARG}
-      SRC="${SCRIPT_DIR}/${rel_path}"
-      recurse_install $SRC
+      src="${SCRIPT_DIR}/${rel_path}"
+      unset rel_path
+
+      recurse_install $src
+      unset src
       exit 0
       ;;
     p )

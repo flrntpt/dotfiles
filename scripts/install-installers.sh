@@ -4,14 +4,9 @@
 
 set -e
 
-SCRIPT_PATH=$(realpath "$0")
-SCRIPT_DIR=$(dirname "$SCRIPT_PATH")
-DOTFILES_DIR=$(dirname "$SCRIPT_DIR")
-
-source "$SCRIPT_DIR/base.sh"
-source "$COMMON_DIR/install.sh"
-
-DEBUG=true
+source "${0%/*}/common/config.sh"
+source "${0%/*}/common/constants.sh"
+source "${0%/*}/common/install.sh"
 
 
 show_help () {
@@ -33,7 +28,7 @@ install_all () {
 install_one () {
   local src="$1"
   local op="sh -c "$src""
-  if [[ $DEBUG == "true" ]]; then
+  if [[ $DEBUG != "false" ]]; then
     echo "$op"
   else
     eval "$op"
@@ -53,8 +48,11 @@ do
       ;;
     f )
       rel_path=${OPTARG}
-      SRC="${SCRIPT_DIR}/${rel_path}"
-      install_one $SRC
+      src="${SCRIPT_DIR}/${rel_path}"
+      unset rel_path
+
+      install_one $src
+      unset src
       exit 0
       ;;
     * )
