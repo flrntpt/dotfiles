@@ -1,0 +1,7 @@
+brew "coreutils"
+brew "gnu-sed"
+brew "make"
+brew "git"
+brew "vim"
+brew "tmux"
+
