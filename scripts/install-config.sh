@@ -65,7 +65,7 @@ do
       ;;
     g )
       DEBUG=false
-      DST_DIR="$HOME/.config"
+      DST_DIR="$HOME"
       ;;
     d )
       custom_dir=${OPTARG}
