@@ -1,14 +1,7 @@
 # Main .zshrc
 # Will source other files
 
-# Maybe sourcing as a symlink, or not
-# TODO: replace with ternary?
-# NOTE: `readlink -f` not available on MacOS before installing coreutils
-if [[ -L $0 ]]; then
-  DOTFILES="$(dirname "$(dirname "$(readlink "$0")")")"
-else
-  DOTFILES="$(dirname "$(dirname "$0")")"
-fi
+DOTFILES="$HOME/code/dotfiles"
 
 # all of our zsh files
 typeset -U config_files
