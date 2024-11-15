@@ -39,7 +39,7 @@ set noswapfile
 set nobackup
 set nowritebackup
 
-" TODO: find out what this is?
+" Automatically remove any trailing whitespace (spaces or tabs) in the file on save
 autocmd FileType python autocmd BufWritePre <buffer> %s/\s\+$//e
 
 " Allow left/right movements at the end of line
