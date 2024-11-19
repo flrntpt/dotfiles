@@ -1,3 +1,4 @@
+# Completion function for tmuxinator
 _tmuxinator() {
   local commands projects
   commands=(${(f)"$(tmuxinator commands zsh)"})
