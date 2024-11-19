@@ -18,6 +18,8 @@ _tmuxinator() {
 }
 
 compdef _tmuxinator tmuxinator mux
+
+# TODO: should be put in a alias.zsh file
 alias mux="tmuxinator"
 
 # Local Variables:
